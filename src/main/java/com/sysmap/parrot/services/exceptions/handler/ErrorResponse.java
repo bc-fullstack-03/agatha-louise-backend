@@ -1,4 +1,4 @@
-package com.sysmap.parrot.services.exceptions;
+package com.sysmap.parrot.services.exceptions.handler;
 
 import org.springframework.http.HttpStatus;
 
