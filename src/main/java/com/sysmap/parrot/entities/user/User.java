@@ -22,16 +22,12 @@ public class User {
 	private String password;
 	@Indexed(unique = true)
 	private String email;
-	private List<UUID> follows;
-	private List<UUID> following;
 
-	public User(String nameUser, String password, String email, List<UUID> follows, List<UUID> following) {
+	public User(String nameUser, String password, String email) {
 		setIdUser();
 		this.name = nameUser;
 		this.password = password;
 		this.email = email;
-		this.follows = follows;
-		this.following = following;
 	}
 
 	protected void setIdUser(){

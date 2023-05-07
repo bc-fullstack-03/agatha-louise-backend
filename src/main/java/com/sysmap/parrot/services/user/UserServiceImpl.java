@@ -4,13 +4,16 @@ import com.sysmap.parrot.data.UserRepository;
 import com.sysmap.parrot.entities.user.User;
 import com.sysmap.parrot.entities.user.dto.ChangePasswordUserRequest;
 import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
-import com.sysmap.parrot.entities.user.dto.UserDto;
+import com.sysmap.parrot.entities.user.dto.UserResponse;
 import com.sysmap.parrot.mappers.user.UserMapper;
 import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -24,7 +27,7 @@ public class UserServiceImpl implements UserService{
 	UserMapper mapper;
 
 	@Override
-	public UserDto findById(UUID id) {
+	public UserResponse findById(UUID id) {
 		User user = repository.findById(id)
 				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
 
@@ -32,7 +35,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserDto> findAll(){
+	public List<UserResponse> findAll(){
 		return mapper.mappingListUser(repository.findAll());
 	}
 
@@ -40,13 +43,14 @@ public class UserServiceImpl implements UserService{
 	public String createUser(CreateUserRequest request){
 		findByEmail(request.getEmail());
 
-		User user = new User(request.getName(), request.getPassword(), request.getEmail(), new ArrayList<>(), new ArrayList<>());
+		User user = new User(request.getName(), request.getPassword(), request.getEmail());
 		repository.save(user);
 
 		return user.getId().toString();
 	}
+
 	@Override
-	public UserDto update(UserDto request) {
+	public UserResponse update(UserResponse request) {
 
 		Optional<User> userOptional = repository.findById(request.getId());
 		this.findByEmail(request.getEmail());
@@ -61,11 +65,13 @@ public class UserServiceImpl implements UserService{
 
 		return mapper.mappingToUserDTO(repository.save(user));
 	}
+
 	@Override
 	public void delete(UUID id) {
 		findById(id);
 		repository.deleteById(id);
 	}
+
 
 	public void changePassword(ChangePasswordUserRequest resquest) {
 		Optional<User> userOptional = repository.findById(resquest.getId());
