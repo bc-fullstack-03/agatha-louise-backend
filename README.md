@@ -37,11 +37,11 @@ A Collection do postman com todos os endpoints está disponível na pasta:
 doc/collection
 ```
 
-[collection-parrot](doc/collection/colocarcollection)
+[parrot-collection](doc/collection/parrot-collection.json)
 
 ### Endpoint de Monitoração
 
 | Url                    | Descrição                                         |
 |------------------------|---------------------------------------------------|
-| /health                | Endpoint para verificar a saude da aplicação      |
+| /actuator/health       | Endpoint para verificar a saude da aplicação      |
 | /swagger-ui/index.html | Endpoint para verificar a documentação do projeto |
