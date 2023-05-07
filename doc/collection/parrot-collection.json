@@ -137,6 +137,106 @@
 			]
 		},
 		{
+			"name": "Friend",
+			"item": [
+				{
+					"name": "Follow user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"6431056b-586d-40e6-9c53-46d348eb79a3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/friend",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"friend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"6431056b-586d-40e6-9c53-46d348eb79a3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/friend/unfollow",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"friend",
+								"unfollow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List followers by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/friend/1eb6e230-4caa-43b9-818b-15b8995df860",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"friend",
+								"1eb6e230-4caa-43b9-818b-15b8995df860"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "/health",
 			"request": {
 				"method": "GET",
