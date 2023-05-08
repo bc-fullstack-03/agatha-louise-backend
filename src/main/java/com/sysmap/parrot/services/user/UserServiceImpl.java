@@ -4,19 +4,17 @@ import com.sysmap.parrot.data.UserRepository;
 import com.sysmap.parrot.entities.user.User;
 import com.sysmap.parrot.entities.user.dto.ChangePasswordUserRequest;
 import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
+import com.sysmap.parrot.entities.user.dto.UserRequest;
 import com.sysmap.parrot.entities.user.dto.UserResponse;
 import com.sysmap.parrot.mappers.user.UserMapper;
 import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 	public static final String USUARIO_NAO_ENCONTRADO = "Usuário não encontrado";
 
@@ -35,13 +33,16 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<UserResponse> findAll(){
+	public List<UserResponse> findAll() {
 		return mapper.mappingListUser(repository.findAll());
 	}
 
 	@Override
-	public String createUser(CreateUserRequest request){
-		findByEmail(request.getEmail());
+	public String createUser(CreateUserRequest request) {
+
+		if(repository.findByEmail(request.getEmail()).isPresent()){
+			throw new DataIntegratyViolationException("Email já cadastrado");
+		}
 
 		User user = new User(request.getName(), request.getPassword(), request.getEmail());
 		repository.save(user);
@@ -50,18 +51,28 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserResponse update(UserResponse request) {
+	public UserResponse update(UserRequest request) {
 
 		Optional<User> userOptional = repository.findById(request.getId());
-		this.findByEmail(request.getEmail());
 
 		if (userOptional.isEmpty()) {
 			throw new DataIntegratyViolationException(USUARIO_NAO_ENCONTRADO);
 		}
 
+		if(repository.findByEmail(request.getEmail()).isPresent()){
+			throw new DataIntegratyViolationException("Email já cadastrado");
+		}
+
+
 		User user = userOptional.get();
-		user.setName(request.getName());
-		user.setEmail(request.getEmail());
+
+		if(request.getName() != null) {
+			user.setName(request.getName());
+		}
+
+		if (request.getEmail() != null) {
+			user.setEmail(request.getEmail());
+		}
 
 		return mapper.mappingToUserDTO(repository.save(user));
 	}
@@ -89,10 +100,11 @@ public class UserServiceImpl implements UserService{
 		repository.save(user);
 	}
 
-	private void findByEmail(String email){
-		Optional<User> user = repository.findByEmail(email);
-		if(user.isPresent() && user.get().getEmail().equals(email)){
-			throw new DataIntegratyViolationException("Email já cadastrado no sistema");
-		}
+	@Override
+	public UserResponse findByEmail(String email) {
+		User user = repository.findByEmail(email)
+				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
+
+		return mapper.mappingToUserDTO(user);
 	}
 }

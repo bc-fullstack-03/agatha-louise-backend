@@ -2,29 +2,27 @@ package com.sysmap.parrot.entities.user.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+
+import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserRequest {
 
-	@NotBlank(message = "{user.name.not.blank}")
-	@Size(min = 2, max = 30, message = "{user.name.size.message}")
-	private String userName;
+	@NotBlank(message = "{user.id.not.null}")
+	private UUID id;
 
-	@NotBlank(message = "{user.password.not.blank}")
-	@Size(min = 6, message = "{user.password.size.message}")
-	private String password;
+	@Size(min = 2, max = 30, message = "{user.name.size.message}")
+	private String name;
 
 	@Email
-	@NotBlank(message = "{user.email.not.blank}")
 	private String email;
 
 }

@@ -25,28 +25,28 @@ public class FriendController {
 
 	@PostMapping("")
 	@ApiOperation("Seguir um user")
-	public FriendResponse followUser (@RequestBody @Valid FriendRequest request){
+	public ResponseEntity<FriendResponse> followUser (@RequestBody @Valid FriendRequest request){
 
 		log.info("Follow request  {} ", request);
 
-		return service.followUser(request);
+		return ResponseEntity.ok().body(service.followUser(request));
 	}
 
 	@GetMapping(value = "/{id}")
 	@ApiOperation("Listar seguido/seguidores pelo id")
-	public FriendResponse findById(@PathVariable UUID id){
+	public ResponseEntity<FriendResponse> findById(@PathVariable UUID id){
 
 		log.info("Listando seguido/seguidores pelo id {} ", id);
-		return service.getListFollowerById(id);
+		return ResponseEntity.ok().body(service.getListFollowerById(id));
 	}
 
 	@PostMapping("/unfollow")
 	@ApiOperation("Deixar de seguir um user")
-	public FriendResponse unfollowUser (@RequestBody @Valid FriendRequest request){
+	public ResponseEntity<FriendResponse> unfollowUser (@RequestBody @Valid FriendRequest request){
 
 		log.info("Unfollow request  {} ", request);
 
-		return service.unfollowUser(request);
+		return ResponseEntity.ok().body(service.unfollowUser(request));
 	}
 
 }

@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ChangePasswordUserRequest {
 
+	@NotBlank(message = "{user.id.not.null}")
 	private UUID id;
 
 	@NotBlank(message = "{user.currentPassword.not.blank}")

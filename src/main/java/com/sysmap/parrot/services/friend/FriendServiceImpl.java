@@ -16,6 +16,7 @@ import java.util.*;
 public class FriendServiceImpl implements FriendService {
 
 	public static final String SEM_LISTA_DE_SEGUINDO_E_SEGUIDORES = "USUARIO SEM LISTA DE SEGUINDO E SEGUIDORES";
+
 	@Autowired
 	FriendRepository repository;
 
@@ -24,8 +25,6 @@ public class FriendServiceImpl implements FriendService {
 
 	@Autowired
 	FriendMapper mapper;
-
-
 
 	@Override
 	public FriendResponse followUser(FriendRequest request) {

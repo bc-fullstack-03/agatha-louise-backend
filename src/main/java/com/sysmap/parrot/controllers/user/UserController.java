@@ -2,6 +2,7 @@ package com.sysmap.parrot.controllers.user;
 
 import com.sysmap.parrot.entities.user.dto.ChangePasswordUserRequest;
 import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
+import com.sysmap.parrot.entities.user.dto.UserRequest;
 import com.sysmap.parrot.entities.user.dto.UserResponse;
 import com.sysmap.parrot.services.user.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -49,12 +50,11 @@ public class UserController {
 
 		log.info("Iniciando a listagem de todos os users");
 
-		return ResponseEntity.ok()
-				.body(userService.findAll());
+		return ResponseEntity.ok().body(userService.findAll());
 	}
 
 	@PutMapping(value = "")
-	public ResponseEntity<UserResponse> update(@RequestBody UserResponse request){
+	public ResponseEntity<UserResponse> update(@RequestBody UserRequest request){
 
 		log.info("Atualizando um user");
 		log.info("UserResponse request {} ", request);
@@ -83,4 +83,13 @@ public class UserController {
 
 		return ResponseEntity.ok().build();
 	}
+
+	@GetMapping(params = "email")
+	@ApiOperation("Buscar usuário pelo email")
+	public ResponseEntity<UserResponse> findByemail(@RequestParam String email){
+
+		log.info("Buscando user por email {} ", email);
+		return ResponseEntity.ok().body(userService.findByEmail(email));
+	}
+
 }
