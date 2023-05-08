@@ -8,6 +8,7 @@ import com.sysmap.parrot.entities.user.dto.UserRequest;
 import com.sysmap.parrot.entities.user.dto.UserResponse;
 import com.sysmap.parrot.mappers.user.UserMapper;
 import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,11 +93,12 @@ public class UserServiceImpl implements UserService {
 		}
 
 		User user = userOptional.get();
-		if (!user.getPassword().equals(resquest.getCurrentPassword())) {
+
+		if (! BCrypt.checkpw(resquest.getCurrentPassword(), user.getPassword())) {
 			throw new DataIntegratyViolationException("Senha atual incorreta");
 		}
 
-		user.setPassword(resquest.getNewPassword());
+		user.setPassword(BCrypt.hashpw(resquest.getNewPassword(), BCrypt.gensalt()));
 		repository.save(user);
 	}
 

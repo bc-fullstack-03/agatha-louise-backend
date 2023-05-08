@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import nonapi.io.github.classgraph.json.Id;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -25,11 +26,16 @@ public class User {
 	public User(String nameUser, String password, String email) {
 		setIdUser();
 		this.name = nameUser;
-		this.password = password;
+		setPassword(password);
 		this.email = email;
 	}
 
 	protected void setIdUser(){
 		this.id = UUID.randomUUID();
 	}
+
+	public void setPassword(String password) {
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());;
+	}
+
 }

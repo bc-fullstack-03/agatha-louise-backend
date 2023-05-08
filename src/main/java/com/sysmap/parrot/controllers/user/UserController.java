@@ -71,10 +71,8 @@ public class UserController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PutMapping(value = "/change/password/{id}")
-	public ResponseEntity<Void> changePassword(@PathVariable UUID id, @RequestBody ChangePasswordUserRequest request){
-
-		request.setId(id);
+	@PutMapping(value = "/change/password")
+	public ResponseEntity<Void> changePassword (@RequestBody ChangePasswordUserRequest request){
 
 		log.info("Atualizando um user");
 		log.info("UserResponse request {} ", request);
