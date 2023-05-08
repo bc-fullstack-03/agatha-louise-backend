@@ -1,5 +1,6 @@
 package com.sysmap.parrot.services.exceptions.handler;
 
+import com.sysmap.parrot.services.exceptions.UserNotAuthenticate;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.validation.BindingResult;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -7,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -22,6 +25,13 @@ public class RestExceptionHandler {
 		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, message);
 		return ResponseEntity.badRequest().body(errorResponse);
 	}
+
+	@ExceptionHandler(UserNotAuthenticate.class)
+	public ResponseEntity<Object> handleUserNotAuthenticate(UserNotAuthenticate ex) {
+		ErrorResponse errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
+		return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
+	}
+
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception ex) {
