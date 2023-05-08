@@ -24,13 +24,13 @@ public class User {
 	private String email;
 
 	public User(String nameUser, String password, String email) {
-		setIdUser();
+		setId();
 		this.name = nameUser;
-		setPassword(password);
+		this.password = password;
 		this.email = email;
 	}
 
-	protected void setIdUser(){
+	public void setId(){
 		this.id = UUID.randomUUID();
 	}
 

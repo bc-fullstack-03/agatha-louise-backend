@@ -5,6 +5,7 @@ import com.sysmap.parrot.entities.friend.dto.FriendResponse;
 import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
 import com.sysmap.parrot.entities.user.dto.UserResponse;
 import com.sysmap.parrot.services.friend.FriendService;
+import com.sysmap.parrot.services.security.JwtService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +24,15 @@ public class FriendController {
 	@Autowired
 	FriendService service;
 
+	@Autowired
+	JwtService jwtService;
+
+
 	@PostMapping("")
 	@ApiOperation("Seguir um user")
-	public ResponseEntity<FriendResponse> followUser (@RequestBody @Valid FriendRequest request){
+	public ResponseEntity<FriendResponse> followUser (@RequestHeader("Authorization") String token, @RequestBody @Valid FriendRequest request){
+
+		jwtService.isValidToken(token, request.getFollowerId());
 
 		log.info("Follow request  {} ", request);
 
@@ -34,7 +41,10 @@ public class FriendController {
 
 	@GetMapping(value = "/{id}")
 	@ApiOperation("Listar seguido/seguidores pelo id")
-	public ResponseEntity<FriendResponse> findById(@PathVariable UUID id){
+	public ResponseEntity<FriendResponse> findById(@RequestHeader("Authorization") String token, @PathVariable UUID id){
+
+		UUID idHeaders = jwtService.getUserIdFromToken(token);
+		jwtService.isValidToken(token, idHeaders);
 
 		log.info("Listando seguido/seguidores pelo id {} ", id);
 		return ResponseEntity.ok().body(service.getListFollowerById(id));
@@ -42,7 +52,10 @@ public class FriendController {
 
 	@PostMapping("/unfollow")
 	@ApiOperation("Deixar de seguir um user")
-	public ResponseEntity<FriendResponse> unfollowUser (@RequestBody @Valid FriendRequest request){
+	public ResponseEntity<FriendResponse> unfollowUser (@RequestHeader("Authorization") String token, @RequestBody @Valid FriendRequest request){
+
+		jwtService.isValidToken(token, request.getFollowerId());
+
 
 		log.info("Unfollow request  {} ", request);
 

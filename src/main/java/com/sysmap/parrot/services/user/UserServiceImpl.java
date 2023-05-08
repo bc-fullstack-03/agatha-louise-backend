@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserMapper mapper;
 
+
 	@Override
 	public UserResponse findById(UUID id) {
 		User user = repository.findById(id)
@@ -45,7 +46,12 @@ public class UserServiceImpl implements UserService {
 			throw new DataIntegratyViolationException("Email já cadastrado");
 		}
 
-		User user = new User(request.getName(), request.getPassword(), request.getEmail());
+		User user = new User();
+		user.setId();
+		user.setPassword(request.getPassword());
+		user.setName(request.getName());
+		user.setEmail(request.getEmail());
+
 		repository.save(user);
 
 		return user.getId().toString();
@@ -85,8 +91,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	public void changePassword(ChangePasswordUserRequest resquest) {
-		Optional<User> userOptional = repository.findById(resquest.getId());
+	public void changePassword(ChangePasswordUserRequest request) {
+		Optional<User> userOptional = repository.findById(request.getId());
 
 		if (userOptional.isEmpty()) {
 			throw new DataIntegratyViolationException(USUARIO_NAO_ENCONTRADO);
@@ -94,11 +100,11 @@ public class UserServiceImpl implements UserService {
 
 		User user = userOptional.get();
 
-		if (! BCrypt.checkpw(resquest.getCurrentPassword(), user.getPassword())) {
+		if (!BCrypt.checkpw(request.getCurrentPassword(), user.getPassword())) {
 			throw new DataIntegratyViolationException("Senha atual incorreta");
 		}
 
-		user.setPassword(BCrypt.hashpw(resquest.getNewPassword(), BCrypt.gensalt()));
+		user.setPassword(request.getNewPassword());
 		repository.save(user);
 	}
 
@@ -108,5 +114,12 @@ public class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
 
 		return mapper.mappingToUserDTO(user);
+	}
+
+	@Override
+	public User getUser(String email) {
+		return repository.findByEmail(email)
+				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
+
 	}
 }

@@ -35,7 +35,7 @@ public class JwtServiceImpl implements JwtService {
 				.parserBuilder()
 				.setSigningKey(genSignInKey())
 				.build()
-				.parseClaimsJws(token)
+				.parseClaimsJws(token.substring(7))
 				.getBody();
 
 		String sub = claims.getSubject();
@@ -49,10 +49,17 @@ public class JwtServiceImpl implements JwtService {
 	}
 
 	public UUID getUserIdFromToken(String token) {
-		Jws<Claims> jws = Jwts.parserBuilder().setSigningKey(KEY).build().parseClaimsJws(token);
-		Claims claims = jws.getBody();
-		return UUID.fromString(claims.getSubject());
+		Claims claims = Jwts.parserBuilder()
+				.setSigningKey(genSignInKey())
+				.build()
+				.parseClaimsJws(token.substring(7))
+				.getBody();
+
+		String userIdString = claims.getSubject();
+
+		return UUID.fromString(userIdString);
 	}
+
 
 
 	private Key genSignInKey() {

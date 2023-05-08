@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Dexter Morgan\",\r\n    \"password\": \"harrison123\",\r\n    \"email\": \"dexter@email.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Agatha Louise\",\r\n    \"password\": \"sorvete\",\r\n    \"email\": \"agatha@email.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,8 +42,25 @@
 				{
 					"name": "Find All",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/api/v1/user",
 							"protocol": "http",
@@ -83,13 +100,50 @@
 					"response": []
 				},
 				{
+					"name": "Find by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user?email=hokage@email.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "hokage@email.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"96ba01be-9c98-4798-9a2f-5b8b40d4d78a\",\r\n    \"name\": \"Dexter Morgan Update\",\r\n    \"email\": \"dexter@email.com\"\r\n}",
+							"raw": "{\r\n    \"id\": \"552c96be-1ff7-4096-a8ff-900b7e487343\",\r\n    \"name\": \"Naruto Uzumaki\",\r\n    \"email\": \"hokagelindo@email.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,6 +161,38 @@
 								"api",
 								"v1",
 								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"8b4a341b-5834-4dba-855d-23ec5dd84123\",\r\n    \"currentPassword\": \"sorvete\",\r\n    \"newPassword\": \"senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/change/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"change",
+								"password"
 							]
 						}
 					},
@@ -142,6 +228,16 @@
 				{
 					"name": "Follow user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -172,11 +268,21 @@
 				{
 					"name": "Unfollow user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"6431056b-586d-40e6-9c53-46d348eb79a3\"\r\n}",
+							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"054729c7-2936-4ad9-899d-68a5ba2a4797\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -206,6 +312,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -235,6 +351,55 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.globals.set(\"token\", jsonData.token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"maria@email.com\",\r\n    \"password\": \"coxinha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/authentication",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Oláaa,  \n  \nNa autenticação, na aba tests criei um metodo para salvar o token numa variavel global."
 		},
 		{
 			"name": "/health",
