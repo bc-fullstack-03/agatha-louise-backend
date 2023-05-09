@@ -2,7 +2,7 @@ package com.sysmap.parrot.services.security;
 
 import com.sysmap.parrot.services.exceptions.UserNotAuthenticate;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;

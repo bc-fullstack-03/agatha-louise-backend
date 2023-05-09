@@ -17,6 +17,7 @@ public class UserMapperImpl implements UserMapper{
 		userResponse.setId(user.getId());
 		userResponse.setName(user.getName());
 		userResponse.setEmail(user.getEmail());
+		userResponse.setPhotoUri(user.getPhotoUri());
 
 		return userResponse;
 	}
@@ -29,6 +30,7 @@ public class UserMapperImpl implements UserMapper{
 					userResponse.setId(u.getId());
 					userResponse.setName(u.getName());
 					userResponse.setEmail(u.getEmail());
+					userResponse.setPhotoUri(u.getPhotoUri());
 					return userResponse;
 				})
 				.collect(Collectors.toList());

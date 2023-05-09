@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -108,6 +109,25 @@ public class UserController {
 
 		log.info("Buscando user por email {} ", email);
 		return ResponseEntity.ok().body(userService.findByEmail(email));
+	}
+
+	@PostMapping("/photo/upload")
+	public ResponseEntity uploadPhotoProfile(@RequestHeader("Authorization") String token, @RequestParam("photo") MultipartFile photo) {
+
+		UUID idHeaders = jwtService.getUserIdFromToken(token);
+		jwtService.isValidToken(token, idHeaders);
+
+		try {
+
+			userService.uploadPhotoProfile(photo, idHeaders );
+			return new ResponseEntity(HttpStatus.OK);
+
+		} catch (Exception e) {
+
+			return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+		}
+
 	}
 
 }

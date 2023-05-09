@@ -22,6 +22,7 @@ public class User {
 	private String password;
 	@Indexed(unique = true)
 	private String email;
+	private String photoUri;
 
 	public User(String nameUser, String password, String email) {
 		setId();

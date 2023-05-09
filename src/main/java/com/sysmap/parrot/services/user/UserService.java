@@ -5,6 +5,7 @@ import com.sysmap.parrot.entities.user.model.ChangePasswordUserRequest;
 import com.sysmap.parrot.entities.user.model.CreateUserRequest;
 import com.sysmap.parrot.entities.user.model.UserRequest;
 import com.sysmap.parrot.entities.user.model.UserResponse;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,4 +26,6 @@ public interface UserService {
 	UserResponse findByEmail(String email);
 
 	User getUser(String email);
+
+	void uploadPhotoProfile(MultipartFile photo, UUID idUser) throws Exception;
 }

@@ -8,9 +8,12 @@ import com.sysmap.parrot.entities.user.model.UserRequest;
 import com.sysmap.parrot.entities.user.model.UserResponse;
 import com.sysmap.parrot.mappers.user.UserMapper;
 import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
+import com.sysmap.parrot.services.fileUpload.FileUploadService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -25,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserMapper mapper;
 
+	@Autowired
+	FileUploadService fileUploadService;
 
 	@Override
 	public UserResponse findById(UUID id) {
@@ -121,5 +126,26 @@ public class UserServiceImpl implements UserService {
 		return repository.findByEmail(email)
 				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
 
+	}
+
+	@Override
+	public void uploadPhotoProfile(MultipartFile photo, UUID idUser) throws Exception {
+
+		User user = repository.findById(idUser)
+				.orElseThrow(() -> new NoSuchElementException(USUARIO_NAO_ENCONTRADO));
+
+		var photoUri = "";
+
+		try {
+			var fileName = idUser + "." + photo.getOriginalFilename().substring(photo.getOriginalFilename().lastIndexOf(".") + 1);
+			photoUri = fileUploadService.upload(photo, fileName);
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+		}
+
+		user.setPhotoUri(photoUri);
+		repository.save(user);
 	}
 }
