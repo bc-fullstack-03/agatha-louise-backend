@@ -41,7 +41,7 @@ docker compose up -d
 
 A aplicação passará a responder na porta: 8082
 
-Lembre-se de configurar o localstorage
+Lembre-se de configurar o LocalStack
 ```
 aws configure --profile default //mykey, mykey, us-west-2, json
 ```
