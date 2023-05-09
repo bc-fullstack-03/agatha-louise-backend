@@ -6,18 +6,32 @@ import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AwsConfig {
 
+	@Value("${app-config.api-env}")
+	private String apiEnv;
+
+
 	@Bean
 	public AmazonS3 amazonS3() {
-		return AmazonS3ClientBuilder
+
+		String localstackUri = "http://localstack-demo:4566";
+
+		if (apiEnv.equals("local")) {
+			localstackUri = "http://s3.localhost.localstack.cloud:4566";
+		}
+
+
+		return  AmazonS3ClientBuilder
 				.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("mykey", "mykey")))
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://s3.localhost.localstack.cloud:4566", Regions.US_WEST_2.getName()))
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(localstackUri, Regions.US_WEST_2.getName()))
+				.withPathStyleAccessEnabled(true)
 				.build();
 	}
 }

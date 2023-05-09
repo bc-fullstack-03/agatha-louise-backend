@@ -41,6 +41,15 @@ docker compose up -d
 
 A aplicação passará a responder na porta: 8082
 
+Lembre-se de configurar o localstorage
+```
+aws configure --profile default //mykey, mykey, us-west-2, json
+```
+
+```
+aws s3 mb s3://parrot-bucket --endpoint-url [http://localhost:4566](http://localhost:4566/)
+```
+
 ---
 
 ### Funções:
