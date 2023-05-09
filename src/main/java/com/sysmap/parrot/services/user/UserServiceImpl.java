@@ -11,7 +11,6 @@ import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
 import com.sysmap.parrot.services.fileUpload.FileUploadService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

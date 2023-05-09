@@ -6,13 +6,16 @@ import com.sysmap.parrot.entities.post.Post;
 import com.sysmap.parrot.entities.post.model.PostRequest;
 import com.sysmap.parrot.entities.post.model.PostResponse;
 import com.sysmap.parrot.entities.post.model.PostUpdateRequest;
+import com.sysmap.parrot.entities.user.User;
 import com.sysmap.parrot.entities.user.model.UserResponse;
 import com.sysmap.parrot.mappers.post.PostMapper;
+import com.sysmap.parrot.services.fileUpload.FileUploadService;
 import com.sysmap.parrot.services.friend.FriendService;
 import com.sysmap.parrot.services.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -32,6 +35,9 @@ public class PostServiceImp implements PostService {
 
 	@Autowired
 	FriendService friendService;
+
+	@Autowired
+	FileUploadService fileUploadService;
 
 	@Autowired
 	PostMapper mapper;
@@ -115,6 +121,26 @@ public class PostServiceImp implements PostService {
 	public void deletePostByIdPost(UUID id) {
 		getPostbyIdPost(id);
 		repository.deleteById(id);
+	}
+
+	@Override
+	public void uploadPhotoPost(MultipartFile photo, UUID idHeaders, UUID idPost) throws Exception {
+		Post post = repository.findById(idPost)
+				.orElseThrow(() -> new NoSuchElementException(NAO_ENCONTRADO));
+
+		var photoUri = "";
+
+		try {
+			var fileName = idPost + "." + photo.getOriginalFilename().substring(photo.getOriginalFilename().lastIndexOf(".") + 1);
+			photoUri = fileUploadService.upload(photo, fileName);
+
+		} catch (Exception e) {
+
+			throw new Exception(e.getMessage());
+		}
+
+		post.setMedia(photoUri);
+		repository.save(post);
 	}
 
 	@Override

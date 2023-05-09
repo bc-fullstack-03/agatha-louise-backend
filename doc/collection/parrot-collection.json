@@ -370,6 +370,49 @@
 					"response": []
 				},
 				{
+					"name": "Upload photo for post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/agsantan/OneDrive - Capgemini/Desktop/Interna.webp"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post/396f962a-3057-4177-a6f3-24152bb1abed/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"396f962a-3057-4177-a6f3-24152bb1abed",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update Post",
 					"request": {
 						"auth": {
@@ -544,7 +587,7 @@
 					"response": []
 				},
 				{
-					"name": "Find Posts (de quem sigo)",
+					"name": "Find All Posts (de quem sigo)",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -616,6 +659,49 @@
 								"api",
 								"v1",
 								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload photo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/agsantan/OneDrive - Capgemini/Desktop/2574f9070ce48b988fe2693a60c40427.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/user/photo/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"photo",
+								"upload"
 							]
 						}
 					},
