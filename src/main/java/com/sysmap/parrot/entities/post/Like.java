@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Getter
@@ -12,5 +12,20 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Like {
 
-	private List<UUID> userIdList;
+	private UUID userId;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Like like = (Like) o;
+
+		return Objects.equals(userId, like.userId);
+	}
+
+	@Override
+	public int hashCode() {
+		return userId != null ? userId.hashCode() : 0;
+	}
 }
