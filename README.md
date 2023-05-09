@@ -32,7 +32,7 @@ mvn install
 ```
 
 ```
-docker build images
+docker compose build
 ```
 
 ```
