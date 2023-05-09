@@ -7,6 +7,588 @@
 	},
 	"item": [
 		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Comment",
+					"item": [
+						{
+							"name": "Create Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idUser\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\",\r\n    \"comment\": \"aeeeeeeee!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"comment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\": \"vamo comer uma carninha assada??\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment/f4cd1ed5-0efb-4d48-afcb-42510f60ab5b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"comment",
+										"f4cd1ed5-0efb-4d48-afcb-42510f60ab5b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment/f4cd1ed5-0efb-4d48-afcb-42510f60ab5b",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"comment",
+										"f4cd1ed5-0efb-4d48-afcb-42510f60ab5b"
+									],
+									"query": [
+										{
+											"key": "idPost",
+											"value": "b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment/",
+											"disabled": true
+										},
+										{
+											"key": "idComment",
+											"value": "f4cd1ed5-0efb-4d48-afcb-42510f60ab5b",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Like",
+					"item": [
+						{
+							"name": "Like Post",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idUser\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"like"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deslike Post",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idUser\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/unlike",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"unlike"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Like Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idUser\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\",\r\n    \"idComment\": \"d73a950c-689b-4dc8-95b3-d2c1934ca8a5\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment/like",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"comment",
+										"like"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deslike Comment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idComment\": \"d73a950c-689b-4dc8-95b3-d2c1934ca8a5\",\r\n    \"idUser\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/post/b1a40a7b-47be-4e00-9e29-9b12a31aa219/comment/unlike",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"post",
+										"b1a40a7b-47be-4e00-9e29-9b12a31aa219",
+										"comment",
+										"unlike"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"authorId\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\",\r\n    \"content\": \"Oieee! vamo tc?\",\r\n    \"media\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPost\": \"b1a40a7b-47be-4e00-9e29-9b12a31aa219\",\r\n    \"idAuthor\": \"d3610b63-046e-444e-9b58-52fbdafe0de3\",\r\n    \"content\": \"Atualizando isso akiii\",\r\n    \"media\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post/a62dbd90-376c-4592-863c-fc3a25c643c3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"a62dbd90-376c-4592-863c-fc3a25c643c3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Post By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post/8bee19b8-f420-454f-b4fd-70582c67f2aa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"8bee19b8-f420-454f-b4fd-70582c67f2aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Post By idAuthor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post?id=d3610b63-046e-444e-9b58-52fbdafe0de3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "d3610b63-046e-444e-9b58-52fbdafe0de3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Posts (de quem sigo)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User",
 			"item": [
 				{
@@ -16,7 +598,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Agatha Louise\",\r\n    \"password\": \"sorvete\",\r\n    \"email\": \"agatha@email.com\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Agatha\",\r\n    \"password\": \"coxinha\",\r\n    \"email\": \"agatha@email.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,10 +662,20 @@
 				{
 					"name": "Find by Id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/96ba01be-9c98-4798-9a2f-5b8b40d4d78a",
+							"raw": "http://localhost:8080/api/v1/user/054729c7-2936-4ad9-899d-68a5ba2a4797",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -93,7 +685,7 @@
 								"api",
 								"v1",
 								"user",
-								"96ba01be-9c98-4798-9a2f-5b8b40d4d78a"
+								"054729c7-2936-4ad9-899d-68a5ba2a4797"
 							]
 						}
 					},
@@ -139,6 +731,16 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -169,11 +771,21 @@
 				{
 					"name": "Change Password",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"8b4a341b-5834-4dba-855d-23ec5dd84123\",\r\n    \"currentPassword\": \"sorvete\",\r\n    \"newPassword\": \"senha123\"\r\n}",
+							"raw": "{\r\n    \"id\": \"eb6bc106-9ae5-4d11-9203-a068f71568f9\",\r\n    \"currentPassword\": \"coxinha\",\r\n    \"newPassword\": \"coxinha\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -201,10 +813,20 @@
 				{
 					"name": "Delete",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/96ba01be-9c98-4798-9a2f-5b8b40d4d78a",
+							"raw": "http://localhost:8080/api/v1/user/a9330d42-a7c0-4330-96c0-0ac367b9b591",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -214,7 +836,7 @@
 								"api",
 								"v1",
 								"user",
-								"96ba01be-9c98-4798-9a2f-5b8b40d4d78a"
+								"a9330d42-a7c0-4330-96c0-0ac367b9b591"
 							]
 						}
 					},
@@ -242,7 +864,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"6431056b-586d-40e6-9c53-46d348eb79a3\"\r\n}",
+							"raw": "{\r\n    \"followerId\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\",\r\n    \"followedId\": \"d3610b63-046e-444e-9b58-52fbdafe0de3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -282,7 +904,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"followerId\": \"1eb6e230-4caa-43b9-818b-15b8995df860\",\r\n    \"followedId\": \"054729c7-2936-4ad9-899d-68a5ba2a4797\"\r\n}",
+							"raw": "{\r\n    \"followerId\": \"f1ef6e45-0453-4293-9dcc-c462aca8276f\",\r\n    \"followedId\": \"054729c7-2936-4ad9-899d-68a5ba2a4797\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
