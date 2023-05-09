@@ -1,12 +1,13 @@
-package com.sysmap.parrot.entities.post.dto;
+package com.sysmap.parrot.entities.post.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -14,14 +15,18 @@ import java.util.UUID;
 @NoArgsConstructor
 @Slf4j
 @ToString
-public class PostRequest {
+public class PostUpdateRequest {
 
-	private UUID id;
-	private UUID idUser;
-	private String nameUser;
-	private Date date;
+	@NotNull(message = "{post.id.not.null}")
+	private UUID idPost;
+
+	@NotNull(message = "{user.id.not.null}")
+	private UUID idAuthor;
+
+	@Size(max = 300, message = "{post.content.size.message}")
 	private String content;
 	private String media;
+
 
 	public void verifyRequest() {
 
