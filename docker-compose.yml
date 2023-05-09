@@ -22,7 +22,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   parrot-app:
-    image: agatha/parrot-app:latest
+    image: agathalouise/parrot-app:latest
     build: .
     container_name: parrot-app
     ports:

@@ -2,12 +2,52 @@
 
 backend monolito que representa uma rede social. 
 
+
+### Collection
+
+A Collection do postman com todos os endpoints está disponível na pasta:
+(OBS: a collection já está setada, tá bem legal, vale a pena baixar)
+
+```
+doc/collection
+```
+
+[parrot-collection](doc/collection/parrot-collection.json)
+
+---
+
+### docker-hub: docker pull agathalouise/parrot-app
+
+---
+### Rodando a aplicação com docker
+
+abra o terminal na pasta do projeto e execute os comandos
+
+```
+mvn clean
+```
+
+```
+mvn install
+```
+
+```
+docker build images
+```
+
+```
+docker compose up -d
+```
+
+A aplicação passará a responder na porta: 8082
+
+---
+
 ### Funções:
-  - Criar um usuario
-  - Criar um post
+
+  - Crud de usuario
+  - Crud de Post
   - Interagir com post com comentários e likes
-  - Ver lista de posts
-  - Ver perfil
   - Seguir usuários e ser seguido
   - Ver todas as pessoas da rede
 
@@ -18,7 +58,7 @@ backend monolito que representa uma rede social.
 - Lombok
 - Docker
 - Docker Compose
-- Kafka
+- LocalStack
 
 ### Descrição dos arquivos de configuração do projeto
 
@@ -28,16 +68,6 @@ backend monolito que representa uma rede social.
 | ./src/main/resource/ValidationMessages.properties | Arquivo de configurações das mensagens                                                                |
 | ./pom.xml                                         | Arquivo de configuração da gestão de dependência deste projeto                                        |
 
-
-### Collection
-
-A Collection do postman com todos os endpoints está disponível na pasta:
-
-```
-doc/collection
-```
-
-[parrot-collection](doc/collection/parrot-collection.json)
 
 ### Endpoint de Monitoração
 
