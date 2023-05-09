@@ -1,7 +1,7 @@
 package com.sysmap.parrot.mappers.user;
 
 import com.sysmap.parrot.entities.user.User;
-import com.sysmap.parrot.entities.user.dto.UserResponse;
+import com.sysmap.parrot.entities.user.model.UserResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

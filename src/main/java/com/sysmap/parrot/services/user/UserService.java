@@ -1,10 +1,10 @@
 package com.sysmap.parrot.services.user;
 
 import com.sysmap.parrot.entities.user.User;
-import com.sysmap.parrot.entities.user.dto.ChangePasswordUserRequest;
-import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
-import com.sysmap.parrot.entities.user.dto.UserRequest;
-import com.sysmap.parrot.entities.user.dto.UserResponse;
+import com.sysmap.parrot.entities.user.model.ChangePasswordUserRequest;
+import com.sysmap.parrot.entities.user.model.CreateUserRequest;
+import com.sysmap.parrot.entities.user.model.UserRequest;
+import com.sysmap.parrot.entities.user.model.UserResponse;
 
 import java.util.List;
 import java.util.UUID;

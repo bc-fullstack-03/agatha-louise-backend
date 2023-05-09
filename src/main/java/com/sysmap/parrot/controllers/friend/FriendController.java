@@ -1,16 +1,13 @@
 package com.sysmap.parrot.controllers.friend;
 
-import com.sysmap.parrot.entities.friend.dto.FriendRequest;
-import com.sysmap.parrot.entities.friend.dto.FriendResponse;
-import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
-import com.sysmap.parrot.entities.user.dto.UserResponse;
+import com.sysmap.parrot.entities.friend.model.FriendRequest;
+import com.sysmap.parrot.entities.friend.model.FriendResponse;
 import com.sysmap.parrot.services.friend.FriendService;
 import com.sysmap.parrot.services.security.JwtService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

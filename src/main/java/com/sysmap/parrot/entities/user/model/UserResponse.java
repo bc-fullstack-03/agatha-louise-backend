@@ -1,4 +1,4 @@
-package com.sysmap.parrot.entities.user.dto;
+package com.sysmap.parrot.entities.user.model;
 
 
 import lombok.*;

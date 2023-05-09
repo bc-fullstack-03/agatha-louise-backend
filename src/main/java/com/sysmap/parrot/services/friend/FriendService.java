@@ -1,7 +1,7 @@
 package com.sysmap.parrot.services.friend;
 
-import com.sysmap.parrot.entities.friend.dto.FriendRequest;
-import com.sysmap.parrot.entities.friend.dto.FriendResponse;
+import com.sysmap.parrot.entities.friend.model.FriendRequest;
+import com.sysmap.parrot.entities.friend.model.FriendResponse;
 
 import java.util.UUID;
 

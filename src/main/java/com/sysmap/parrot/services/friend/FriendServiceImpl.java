@@ -2,8 +2,8 @@ package com.sysmap.parrot.services.friend;
 
 import com.sysmap.parrot.data.FriendRepository;
 import com.sysmap.parrot.entities.friend.Friend;
-import com.sysmap.parrot.entities.friend.dto.FriendResponse;
-import com.sysmap.parrot.entities.friend.dto.FriendRequest;
+import com.sysmap.parrot.entities.friend.model.FriendResponse;
+import com.sysmap.parrot.entities.friend.model.FriendRequest;
 import com.sysmap.parrot.mappers.friend.FriendMapper;
 import com.sysmap.parrot.services.exceptions.DataIntegratyViolationException;
 import com.sysmap.parrot.services.user.UserService;

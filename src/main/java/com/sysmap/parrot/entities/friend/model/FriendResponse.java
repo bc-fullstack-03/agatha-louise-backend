@@ -1,7 +1,6 @@
-package com.sysmap.parrot.entities.friend.dto;
+package com.sysmap.parrot.entities.friend.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 

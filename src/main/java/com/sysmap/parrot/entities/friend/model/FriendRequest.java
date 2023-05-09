@@ -1,4 +1,4 @@
-package com.sysmap.parrot.entities.friend.dto;
+package com.sysmap.parrot.entities.friend.model;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

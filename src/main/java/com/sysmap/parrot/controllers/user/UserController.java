@@ -1,9 +1,9 @@
 package com.sysmap.parrot.controllers.user;
 
-import com.sysmap.parrot.entities.user.dto.ChangePasswordUserRequest;
-import com.sysmap.parrot.entities.user.dto.CreateUserRequest;
-import com.sysmap.parrot.entities.user.dto.UserRequest;
-import com.sysmap.parrot.entities.user.dto.UserResponse;
+import com.sysmap.parrot.entities.user.model.ChangePasswordUserRequest;
+import com.sysmap.parrot.entities.user.model.CreateUserRequest;
+import com.sysmap.parrot.entities.user.model.UserRequest;
+import com.sysmap.parrot.entities.user.model.UserResponse;
 import com.sysmap.parrot.services.security.JwtService;
 import com.sysmap.parrot.services.user.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -75,7 +75,7 @@ public class UserController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<UserResponse> delete(@RequestHeader("Authorization") String token, @PathVariable UUID id){
+	public ResponseEntity<Void> delete(@RequestHeader("Authorization") String token, @PathVariable UUID id){
 
 		log.info("Deletando o usuario com o id{} ", id);
 

@@ -1,7 +1,7 @@
 package com.sysmap.parrot.mappers.friend;
 
 import com.sysmap.parrot.entities.friend.Friend;
-import com.sysmap.parrot.entities.friend.dto.FriendResponse;
+import com.sysmap.parrot.entities.friend.model.FriendResponse;
 import org.springframework.stereotype.Component;
 
 @Component
