@@ -16,7 +16,7 @@ doc/collection
 
 ---
 
-### docker-hub: docker pull agathalouise/parrot-app
+### docker-hub: `docker pull agathalouise/parrot-app:latest`
 
 ---
 ### Rodando a aplicação com docker
